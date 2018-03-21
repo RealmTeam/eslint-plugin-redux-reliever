@@ -4,6 +4,7 @@ import rule from '../../../rules/enforce-oftype-usage'
 
 const tester = new RuleTester({
   parserOptions: {
+    sourceType: 'module',
     ecmaVersion: 6
   }
 })

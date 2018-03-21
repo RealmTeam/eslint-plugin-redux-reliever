@@ -5,21 +5,12 @@ const handlers = {
     }
     return checkNode(node.callee)
   },
-  ReturnStatement: ({argument}) => {
-    return checkNode(argument)
-  },
-  VariableDeclaration: ({declarations}) => {
-    return declarations.map(checkNode).filter(x => x).length > 0
-  },
-  VariableDeclarator: ({init}) => {
-    return checkNode(init)
-  },
-  MemberExpression: ({object}) => {
-    return checkNode(object)
-  }
+  ReturnStatement: ({argument}) => checkNode(argument),
+  VariableDeclaration: ({declarations}) => declarations.map(checkNode).filter(x => x).length > 0,
+  VariableDeclarator: ({init}) => checkNode(init),
+  MemberExpression: ({object}) => checkNode(object),
+  ExpressionStatement: ({expression}) => checkNode(expression)
 }
-
-const x = 42
 
 const checkNode = node => {
   if (handlers[node.type]) return handlers[node.type](node)
@@ -27,17 +18,15 @@ const checkNode = node => {
 }
 
 export default {
-  create: context => {
-    return {
-      MethodDefinition: node => {
-        if (!node.key.name.endsWith('Epic')) return
-        const {value: {body: {body: nodes}}} = node
-        const results = nodes.map(checkNode)
-        const isValid = results.filter(x => x).length > 0
-        if (!isValid) {
-          context.report(node, "This epic isn't calling 'ofType' at any point. You like infinite loops don't you?")
-        }
+  create: context => ({
+    MethodDefinition: node => {
+      if (!node.key.name.endsWith('Epic')) return
+      const {value: {body: {body: nodes}}} = node
+      const results = nodes.map(checkNode)
+      const isValid = results.filter(x => x).length > 0
+      if (!isValid) {
+        context.report(node, "This epic isn't calling 'ofType' at any point. You like infinite loops don't you?")
       }
     }
-  }
+  })
 }

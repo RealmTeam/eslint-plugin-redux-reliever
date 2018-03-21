@@ -1,5 +1,9 @@
-class A {
-  someEpic(action$) {
-    return action$.mapTo({type: 'XXX'})
+const Reliever = () => {}
+
+class CounterReliever extends Reliever {
+  someFailingEpic(action$) {
+    return action$
   }
 }
+
+export default CounterReliever
