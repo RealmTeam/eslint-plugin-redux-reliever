@@ -1,6 +1,6 @@
 import enforceOfTypeUsage from './rules/enforce-oftype-usage'
 
-export default {
+module.exports = {
   rules: {
     'enforce-oftype-usage': enforceOfTypeUsage
   }

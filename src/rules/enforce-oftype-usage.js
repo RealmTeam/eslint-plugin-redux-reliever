@@ -17,7 +17,7 @@ const checkNode = node => {
   return false
 }
 
-export default {
+module.exports = {
   create: context => ({
     MethodDefinition: node => {
       if (!node.key.name.endsWith('Epic')) return
