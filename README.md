@@ -1,6 +1,6 @@
-# eslint-plugin-react-redux-reliever-of-type
+# eslint-plugin-redux-reliever
 
-enforce usage of action$.ofType inside react-redux-reliever epics
+enforce usage of action$.ofType inside [react-redux-reliever](https://github.com/RealmTeam/react-redux-reliever) epics
 
 ## Installation
 
@@ -43,7 +43,7 @@ Then configure the rules you want to use under the rules section.
 
 ## Supported Rules
 
-* Fill in provided rules here
+* enforce-oftype-usage
 
 
 
