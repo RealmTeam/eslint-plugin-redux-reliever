@@ -1,4 +1,4 @@
-import enforceOfTypeUsage from './rules/enforce-oftype-usage'
+const enforceOfTypeUsage = require('./rules/enforce-oftype-usage')
 
 module.exports = {
   rules: {
